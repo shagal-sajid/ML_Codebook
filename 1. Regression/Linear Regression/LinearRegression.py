@@ -1,5 +1,6 @@
 import numpy as np
 
+# This one covers multiple linear regression as well.
 # 1. Initiate slope and intercept as 0 initially
 # 2. Iterate through steps 3
 # 3. Calculate y as y_pred with current slope and intercept
@@ -26,8 +27,9 @@ class LinearRegression:
 
         for i in range(n_iteration):
             y_pred = np.dot(X, self.weights) + self.bias
-            dw = (1/n_samples) * np.dot(X.T, (y_pred - y))
-            db = (1/n_samples) * np.sum(y_pred - y)
+            error = y_pred - y
+            dw = (1/n_samples) * np.dot(X.T, (error))
+            db = (1/n_samples) * np.sum(error)
             self.weights -= learning_rate * dw
             self.bias -= learning_rate * db
 
